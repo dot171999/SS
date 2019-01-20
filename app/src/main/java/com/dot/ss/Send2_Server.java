@@ -6,16 +6,13 @@ import java.io.IOException;
 
 import static com.dot.ss.Client_Rec.dataOutputStream;
 
-public class Send2_Server extends AsyncTask<Float, Void, Void> {
+public class Send2_Server extends AsyncTask<PacketModel, Void, Void> {
 
     @Override
-    protected Void doInBackground(Float... params) {
-        float x=params[0];
-        float y=params[1];
-
+    protected Void doInBackground(PacketModel... params) {
+        PacketModel x=params[0];
         try {
-            dataOutputStream.writeFloat(x);
-            dataOutputStream.writeFloat(y);
+            dataOutputStream.writeObject(x);
             dataOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
